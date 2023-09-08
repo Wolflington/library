@@ -1,0 +1,33 @@
+:root {
+    --light-white: #fafaf9; /* for header */
+    --dark-white: #e7e5e4; 
+    --gray: #a8a29e; /*for main bg's color*/
+    --black: #1c1917; /*for buttons */
+    --red: #991b1b /* for remove button */
+    --yellow: #facc15; /* for in progress button */
+    --green: #166534; /*for read button */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--light-white);
+}
+
+main {
+    background-color: var(--gray);
+}
+
+footer {
+    background-color: var(--black);
+    color: var(--dark-white);
+}
+
+footer > span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
