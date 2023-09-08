@@ -1,7 +1,7 @@
 :root {
     --light-white: #fafaf9; /* for header */
     --dark-white: #e7e5e4; 
-    --gray: #a8a29e; /*for main bg's color*/
+    --gray: #d6d3d1; /*for main bg's color*/
     --black: #1c1917; /*for buttons */
     --red: #991b1b /* for remove button */
     --yellow: #facc15; /* for in progress button */
@@ -13,21 +13,50 @@
     padding: 0;
 }
 
+body {
+    overflow: auto;
+}
+
 header {
     background-color: var(--light-white);
+    min-height: 1fr;
+}
+
+.header-container {
+    display: flex;
+    padding: 25px;
 }
 
 main {
     background-color: var(--gray);
+    height: 100vh;
+    padding: 25px;
+}
+
+.main-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.main-container > button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
 }
 
 footer {
     background-color: var(--black);
     color: var(--dark-white);
-}
-
-footer > span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+    min-height: 0.5fr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
 }
