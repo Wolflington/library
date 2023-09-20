@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel = "stylesheet" href = "style.css"/>
+    <script src = "main.js" defer></script>
 </head>
 <body>
     <header> 
@@ -15,10 +16,28 @@
     </header>
 
     <main>
-        <div class = "main-container">
-            <button>+</button>
-            <p>Add book</p>
+        <div class = "btn-container">
+            <button id = "add-book">+</button>
+            <p>Add a book</p>
         </div>
+        <section class = "modal hidden">
+          <form id="book-form">
+                <label for="title">Title:</label>
+                <input type="text" id="title" placeholder = "Title" required><br>
+                <label for="author">Author:</label>
+                <input type="text" id="author" placeholder = "Author" required><br>
+                <label for="pages">Number of Pages:</label>
+                <input type="number" id="pages" placeholder = "No. of Pages" required><br>
+                <label for="read">Have you read this book?</label>
+                <input type="checkbox" id="read"><br>
+                <input type="submit" value="Add Book">
+            </form>
+        </section>
+      
+        <div class = "main-container">
+            
+        </div>
+        <div id="book-list"></div>
     </main>
 
     <footer>
