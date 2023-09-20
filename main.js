@@ -1,55 +1,83 @@
-const myLibrary = [];
+class Book {
+    constructor (
+        title = "Title",
+        author = "Author",
+        pages = 0,
+        read = false
+    ) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+}
 
-function Book (title, author, numOfPages, readStatus) {
-    this.title = title;
-    this.author = author;
-    this.numOfPages = numOfPages;
-    this.readStatus = readStatus;
+//Library constructor
+function Library () {
+    this.books = [];
 }
 
 //Pushes the information to the library
-Book.prototype.add = function () {
-    myLibrary.push(this.title, this.author, this.numOfPages, this.readStatus);
+Library.prototype.addBook = function (book) {
+    this.books.push(book);
 }
 
+Library.prototype.displayBooks = function () {
+    const list = document.querySelector("#book-list");
+    list.innerHTML = '';
 
-function addBooksToLibrary () {
-    // //Get user input and print the content on the document
-    // //Push every input into myLibrary
-    // const getTitle = prompt("Book Title", '');
-    // const getAuthor = prompt("Author of the Book", '');
-    // const getNumOfPages = prompt('Number of Pages', '');
-    // const getReadStatus = prompt('Read/Not Yet Read', '');
+    //FOR EACH books in the library
+    this.books.forEach((book, index) => {
+        //CHECK IF the book is read or not
+        const bookStatus = book.read ? 'Read' : 'Not Read';
+        const bookInfo = `<p>Title: ${book.title}</p>
+        <p>Author: ${book.author}</p>
+        <p>Pages: ${book.pages}</p>
+        <p>Status: ${bookStatus}</p>
+        <button class="delete" data-index="${index}">Delete</button>`;
+        const bookItem = document.createElement('div');
+        bookItem.classList.add('book-item');
+        bookItem.innerHTML = bookInfo;
+        list.appendChild(bookItem);
+    });
+};
 
-    // myLibrary.push(getTitle, getAuthor, getNumOfPages, getReadStatus);
-    // console.log(myLibrary);
+//Clear the input fields
+Library.prototype.clearBooks = function () {
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('pages').value = '';
+    document.getElementById('read').checked = false;
+};
 
-    // console.log(typeof myLibrary === 'object');
+//ADD books using event listener
+document.getElementById('book-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    //Enter the UI to form inputs
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').checked;
 
-    // myLibrary.push(theHobbit.title, theHobbit.author, theHobbit.numOfPages, theHobbit.readStatus);
+    //create new Book constructor
+    const book = new Book(title, author, pages, read);
+    library.addBook(book);
+    library.displayBooks();
+    library.clearBooks();
+});
 
-}
+//Event listeners for deleting a book
+document.getElementById('book-list').addEventListener('click', function(e) {
+    //IF the targeted class
+    if (e.target.classList.contains('delete')) {
+        //GET ATTRIBUTE of the targeted class
+        const index = e.target.getAttribute('data-index');
+        //SPLICE the library starting from index and remove 1 element
+        library.books.splice(index, 1);
+        //CALL displayBooks()
+        library.displayBooks();
+    };
+});
 
-const theHobbit = new Book ("The Hobbit", "J.R.R. Tolkien", "295", "not yet read");
-
-const AtomicHabits = new Book ("Atomic Habits", "James Clear", "288", "finished")
-
-theHobbit.add();
-AtomicHabits.add();
-
-console.log(myLibrary);
-
-function displayBooks () {
-    //FOR each objects in myLibrary
-    for (i = 0; i < myLibrary.length; i++) {
-        console.log(myLibrary[i]);
-        //Target the DOM Element where the library will be printed
-        const displayTitle = document.querySelector(".title");
-        //Print the objects with innerText
-        displayTitle.textContent = myLibrary;
-    }
-    
-}
-
-addBooksToLibrary();
-displayBooks();
+//Create new Library instance
+const library = new Library;
