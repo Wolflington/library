@@ -132,14 +132,16 @@ button {
   flex-direction: column;
   justify-content: center;
   gap: 2.5rem;
-  width: 350px;
   padding: 1.3rem;
-  min-height: 350px;
-  position: absolute;
-  top: 20%;
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 15px;
+  width: 350px;
+  min-height: 350px;
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  z-index: 2;
 }
 
 .overlay {
