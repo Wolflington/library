@@ -81,3 +81,21 @@ document.getElementById('book-list').addEventListener('click', function(e) {
 
 //Create new Library instance
 const library = new Library;
+
+//Open modal when clicked
+//TARGET DOM Elements 
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const openModalBtn = document.querySelector("#add-book");
+const closeModalBtn = document.querySelector(".btn-close");
+
+//FUNCTION that opens modal
+const openModal = function () {
+    //REMOVE CLASSLIST "hidden" from modal class
+    modal.classList.remove("hidden");
+    //REMOVE CLASSLIST "hidden" from overlay class
+    overlay.classList.remove("hidden");
+};
+
+//Event Listener to open modal
+openModalBtn.addEventListener('click', openModal);
