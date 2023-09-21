@@ -101,6 +101,11 @@ button {
     transform: translate(12px, -12px);
 }
 
+.btn-close:hover {
+    background-color: var(--black);
+    color: var(--light-white);
+}
+
 #book-form {
   display: flex;
   flex-direction: column;
@@ -125,6 +130,11 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.modal input[type="submit"]:hover {
+    background-color: var(--black);
+    color: var(--light-white);
 }
 
 .modal {
@@ -156,6 +166,13 @@ button {
     background: rgba(0, 0, 0, 0.5);
     z-index: 1;
   }
+
+/* hides the modal */
+.hidden {
+    display: none
+}
+
+
 
 /*modal end */
 
