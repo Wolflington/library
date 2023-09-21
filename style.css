@@ -3,7 +3,7 @@
     --dark-white: #e7e5e4; 
     --gray: #d6d3d1; /*for main bg's color*/
     --black: #1c1917; /*for buttons */
-    --red: #991b1b /* for remove button */
+    --red: #991b1b; /* for remove button */
     --yellow: #facc15; /* for in progress button */
     --green: #166534; /*for read button */
 }
@@ -76,6 +76,9 @@ main {
 
 
 /* modal start */
+.modal > h2 {
+    text-align: center;
+}
 #book-form {
   display: flex;
   flex-direction: column;
@@ -84,6 +87,7 @@ main {
 
 .check-box {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -95,10 +99,10 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.4rem;
+  gap: 2.5rem;
   width: 300px;
   padding: 1.3rem;
-  min-height: 450px;
+  min-height: 350px;
   position: absolute;
   top: 20%;
   background-color: white;
