@@ -11,11 +11,17 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
+
+/* header start */
+
 
 header {
     background-color: var(--light-white);
@@ -24,24 +30,35 @@ header {
 
 .header-container {
     display: flex;
-    padding: 25px;
+    padding: 1.6rem;
 }
+
+
+/* header end */
+
+
+
+
+
+/* main-body start */
+
 
 main {
     background-color: var(--gray);
-    height: 100vh;
+    height: 100%;
     padding: 25px;
 }
 
-.main-container {
+.btn-container {
     display: flex;
     gap: 10px;
     align-items: center;
+    font-size: 1.2rem;
 }
 
-.main-container > button {
-    width: 30px;
-    height: 30px;
+.btn-container > button {
+    width: 1.9rem;
+    height: 1.9rem;
     border-radius: 50%;
     box-shadow: none;
     border: none;
@@ -49,7 +66,61 @@ main {
     justify-content: center;
     align-items: center;
     font-size: 1.8rem;
+    cursor: pointer;
 }
+
+.btn-container > button:hover {
+    background-color: var(--black);
+    color: var(--light-white);
+}
+
+
+/* modal start */
+#book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.check-box {
+  display: flex;
+  gap: 1rem;
+}
+
+input {
+  height: 2rem;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 300px;
+  padding: 1.3rem;
+  min-height: 450px;
+  position: absolute;
+  top: 20%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+}
+
+
+/*modal end */
+
+
+.main-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    margin-top: 50px;
+}
+
+
+/*main-body end */
+
+
+
 
 footer {
     background-color: var(--black);
