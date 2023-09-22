@@ -29,11 +29,11 @@ Library.prototype.displayBooks = function () {
     //FOR EACH books in the library
     this.books.forEach((book, index) => {
         //CHECK IF the book is read or not
-        const bookStatus = book.read ? 'Read' : 'Not Read';
-        const bookInfo = `<p>Title: ${book.title}</p>
-        <p>Author: ${book.author}</p>
-        <p>Pages: ${book.pages}</p>
-        <p>Status: ${bookStatus}</p>
+        const bookStatus = book.read ? 'Yes' : 'In progress';
+        const bookInfo = `<p class = "title-card">${book.title}</p>
+        <p class = "author-card">by ${book.author}</p>
+        <p class = "pages-card">Number of pages: ${book.pages}</p>
+        <p class = "status-card">Completed: ${bookStatus}</p>
         <button class="delete" data-index="${index}">Delete</button>`;
         const bookItem = document.createElement('div');
         bookItem.classList.add('book-item');
