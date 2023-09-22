@@ -3,7 +3,7 @@
     --dark-white: #e7e5e4; 
     --gray: #d6d3d1; /*for main bg's color*/
     --black: #1c1917; /*for buttons */
-    --red: #991b1b; /* for remove button */
+    --red: #d31b1b; /* for remove button */
     --yellow: #facc15; /* for in progress button */
     --green: #166534; /*for read button */
 }
@@ -87,6 +87,10 @@ button {
     margin-top: 2rem;
 }
 
+
+/* style for book-item cards */
+
+
 .book-item {
     display: flex;
     flex-direction: column;
@@ -108,8 +112,16 @@ button {
     font-size: 1.3rem;
 }
 
+button.delete {
+    background-color: var(--black);
+    color: var(--light-white);
+    height: 2.5rem;
+    border-radius: 10px;
+    border-style: none;
+}
 
-/*main-body end */
+
+/* end of book-item cards */
 
 
 /* modal start */
