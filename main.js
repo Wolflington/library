@@ -23,7 +23,7 @@ Library.prototype.addBook = function (book) {
 }
 
 Library.prototype.displayBooks = function () {
-    const list = document.querySelector("#book-list");
+    const list = document.querySelector(".main-container");
     list.innerHTML = '';
 
     //FOR EACH books in the library
@@ -67,8 +67,8 @@ document.getElementById('book-form').addEventListener('submit', function(e) {
 });
 
 //Event listeners for deleting a book
-document.getElementById('book-list').addEventListener('click', function(e) {
-    //IF the targeted class
+document.querySelector(".main-container").addEventListener('click', function(e) {
+    //IF the targeted class CONTAINS 'DELETE'
     if (e.target.classList.contains('delete')) {
         //GET ATTRIBUTE of the targeted class
         const index = e.target.getAttribute('data-index');
@@ -82,20 +82,29 @@ document.getElementById('book-list').addEventListener('click', function(e) {
 //Create new Library instance
 const library = new Library;
 
-//Open modal when clicked
-//TARGET DOM Elements 
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const openModalBtn = document.querySelector("#add-book");
 const closeModalBtn = document.querySelector(".btn-close");
+const submitBtn = document.querySelector('#submit');
 
-//FUNCTION that opens modal
 const openModal = function () {
-    //REMOVE CLASSLIST "hidden" from modal class
     modal.classList.remove("hidden");
-    //REMOVE CLASSLIST "hidden" from overlay class
     overlay.classList.remove("hidden");
 };
 
-//Event Listener to open modal
+const closeModal = function () {
+    modal.classList.add("hidden");
+    overlay.classList.add("hidden");
+}
+
+//Event Listener to open and close modal
 openModalBtn.addEventListener('click', openModal);
+closeModalBtn.addEventListener('click', closeModal);
+submitBtn.addEventListener('click', closeModal);
+overlay.addEventListener("click", closeModal);
+document.addEventListener("keydown", function (e) {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+    }
+}); //Closes the modal when 'Esc' key is clicked 
