@@ -1,11 +1,12 @@
 :root {
     --light-white: #fafaf9; /* for header */
     --dark-white: #e7e5e4; 
-    --gray: #d6d3d1; /*for main bg's color*/
-    --black: #1c1917; /*for buttons */
+    --gray: #d6d3d1; /* for main bg's color*/
+    --black: #1c1917; /* for buttons */
     --red: #d31b1b; /* for remove button */
     --yellow: #facc15; /* for in progress button */
-    --green: #166534; /*for read button */
+    --green: #166534; /* for read button */
+    --blue: #0077b6; /* for card button */
 }
 
 * {
@@ -113,11 +114,23 @@ button {
 }
 
 button.delete {
-    background-color: var(--black);
-    color: var(--light-white);
+    background-color: var(--blue);
+    color: var(--black);
     height: 2.5rem;
     border-radius: 10px;
     border-style: none;
+    font-size: 1.3rem;
+}
+
+button.delete:hover {
+    background-color: #0077b6db;
+}
+
+.status-btn {
+    height: 2.5rem;
+    border-radius: 10px;
+    border-style: none;
+    font-size: 1.3rem;
 }
 
 
