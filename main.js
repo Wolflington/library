@@ -30,9 +30,10 @@ Library.prototype.displayBooks = function () {
     this.books.forEach((book, index) => {
         //CHECK IF the book is read or not
         const bookStatus = book.read ? 'Read' : 'In progress';
-        const bookInfo = `<p class = "title-card">${book.title}</p>
+        const bookInfo = `<h2 class = "title-card">${book.title}</h2>
         <p class = "author-card">by ${book.author}</p>
         <p class = "pages-card">Number of pages: ${book.pages}</p>
+        <p class "status-card">${bookStatus}</p>
         <button class = 'status-btn'>${bookStatus}</button>
         <button class="delete" data-index="${index}">Delete</button>`;
         const bookItem = document.createElement('div');
@@ -87,6 +88,7 @@ const overlay = document.querySelector(".overlay");
 const openModalBtn = document.querySelector("#add-book");
 const closeModalBtn = document.querySelector(".btn-close");
 const submitBtn = document.querySelector('#submit');
+const statusBtn = document.querySelector('.status-btn');
 
 const openModal = function () {
     modal.classList.remove("hidden");
@@ -108,3 +110,5 @@ document.addEventListener("keydown", function (e) {
         closeModal();
     }
 }); //Closes the modal when 'Esc' key is clicked 
+
+//Event listener for status button
