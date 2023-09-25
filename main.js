@@ -3,7 +3,7 @@ class Book {
         title = "Title",
         author = "Author",
         pages = 0,
-        read = false
+        read = false,
     ) {
         this.title = title;
         this.author = author;
@@ -30,11 +30,10 @@ Library.prototype.displayBooks = function () {
     this.books.forEach((book, index) => {
         //CHECK IF the book is read or not
         const bookStatus = book.read ? 'Read' : 'In progress';
-        const bookInfo = `<h2 class = "title-card">${book.title}</h2>
-        <p class = "author-card">by ${book.author}</p>
-        <p class = "pages-card">Number of pages: ${book.pages}</p>
-        <p class "status-card">${bookStatus}</p>
-        <button class = 'status-btn'>${bookStatus}</button>
+        const bookInfo = `<h2>${book.title}</h2>
+        <p>by ${book.author}</p>
+        <p>Number of pages: ${book.pages}</p>
+        <button id = 'status-btn'>${bookStatus}</button>
         <button class="delete" data-index="${index}">Delete</button>`;
         const bookItem = document.createElement('div');
         bookItem.classList.add('book-item');
@@ -51,8 +50,22 @@ Library.prototype.clearBooks = function () {
     document.getElementById('read').checked = false;
 };
 
+Library.prototype.changeStatus = function () {
+    this.read = !this.read;
+    if (this.read === true) {
+        //ADD classList 'read' if true
+        //DISPLAY TEXT on the website
+        this.status.textContent = "Read";
+    } else {
+        //ADD classList 'not-read' if false
+        //DISPLAY TEXT on the website
+        this.status.textContent = "In progress";
+    }
+};
+
 //ADD books using event listener
-document.getElementById('book-form').addEventListener('submit', function(e) {
+const bookForm = document.getElementById('book-form');
+bookForm.addEventListener('submit', function(e) {
     e.preventDefault();
     //Enter the UI to form inputs
     const title = document.getElementById('title').value;
@@ -68,10 +81,11 @@ document.getElementById('book-form').addEventListener('submit', function(e) {
 });
 
 //Event listeners for deleting a book
-document.querySelector(".main-container").addEventListener('click', function(e) {
+const mainContainer = document.querySelector('.main-container');
+mainContainer.addEventListener('click', function(e) {
     //IF the targeted class CONTAINS 'DELETE'
     if (e.target.classList.contains('delete')) {
-        //GET ATTRIBUTE of the targeted class
+        //GET ATTRIBUTE of the targeted class's index
         const index = e.target.getAttribute('data-index');
         //SPLICE the library starting from index and remove 1 element
         library.books.splice(index, 1);
@@ -83,13 +97,6 @@ document.querySelector(".main-container").addEventListener('click', function(e) 
 //Create new Library instance
 const library = new Library;
 
-const modal = document.querySelector(".modal");
-const overlay = document.querySelector(".overlay");
-const openModalBtn = document.querySelector("#add-book");
-const closeModalBtn = document.querySelector(".btn-close");
-const submitBtn = document.querySelector('#submit');
-const statusBtn = document.querySelector('.status-btn');
-
 const openModal = function () {
     modal.classList.remove("hidden");
     overlay.classList.remove("hidden");
@@ -99,6 +106,13 @@ const closeModal = function () {
     modal.classList.add("hidden");
     overlay.classList.add("hidden");
 }
+
+//DOM Elements
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const openModalBtn = document.querySelector("#add-book");
+const closeModalBtn = document.querySelector(".btn-close");
+const submitBtn = document.querySelector('#submit');
 
 //Event Listener to open and close modal
 openModalBtn.addEventListener('click', openModal);
@@ -110,5 +124,3 @@ document.addEventListener("keydown", function (e) {
         closeModal();
     }
 }); //Closes the modal when 'Esc' key is clicked 
-
-//Event listener for status button
