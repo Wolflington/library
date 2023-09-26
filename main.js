@@ -8,7 +8,7 @@ class Book {
 }
 
 Book.prototype.changeStatus = function () {
-    this.read = false;
+    this.read = !this.read;
 };
 
 function updateBookStatus(element, book) {
