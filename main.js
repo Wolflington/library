@@ -1,16 +1,33 @@
 class Book {
-    constructor (
-        title = "Title",
-        author = "Author",
-        pages = 0,
-        read = false,
-    ) {
+    constructor (title, author, pages, read) {
         this.title = title;
         this.author = author;
         this.pages = pages;
         this.read = read;
     }
 }
+
+Book.prototype.changeStatus = function () {
+    this.read = false;
+};
+
+function updateBookStatus(element, book) {
+    const statusElement = element.getElementById('status-span');
+    statusElement.textContent = book.read;
+}
+
+// const toggleButton = document.querySelectorAll('.status-btn');
+// toggleButton.forEach(function(button, index) {
+//     const bookElement = button.parentElement;
+//     const book = new Book(title, author, pages, read);
+
+//     updateBookStatus(element, book);
+
+//     button.addEventListener('click', function () {
+//         book.changeStatus();
+//         updateBookStatus(element, book);
+//     });
+// });
 
 //Library constructor
 function Library () {
@@ -20,7 +37,7 @@ function Library () {
 //Pushes the information to the library
 Library.prototype.addBook = function (book) {
     this.books.push(book);
-}
+};
 
 Library.prototype.displayBooks = function () {
     const list = document.querySelector(".main-container");
@@ -29,16 +46,35 @@ Library.prototype.displayBooks = function () {
     //FOR EACH book in the library
     this.books.forEach((book, index) => {
         //CHECK IF the book is read or not
-        const bookStatus = book.read ? 'Read' : 'In progress';
+        let bookStatus = '';
+            if (book.read === true) {
+                bookStatus = 'Read';
+            } else {
+                bookStatus = 'In progress';
+            }
         const bookInfo = `<h2>${book.title}</h2>
         <p>by ${book.author}</p>
         <p>Number of pages: ${book.pages}</p>
-        <button id = 'status-btn'>${bookStatus}</button>
+        <p>Status: ${bookStatus}</p>
         <button class="delete" data-index="${index}">Delete</button>`;
         const bookItem = document.createElement('div');
+        const statusBtn = document.createElement('button');
+        statusBtn.textContent = bookStatus;
+        statusBtn.addEventListener('click', () => {
+            book.changeStatus();
+            let bookStatus = '';
+            if (book.read === true) {
+                bookStatus = 'Read';
+            } else {
+                bookStatus = 'In progress';
+            }
+            statusBtn.textContent = bookStatus;
+        });
         bookItem.classList.add('book-item');
+        statusBtn.classList.add('status-btn');
         bookItem.innerHTML = bookInfo;
         list.appendChild(bookItem);
+        bookItem.appendChild(statusBtn);
     });
 };
 
@@ -50,18 +86,7 @@ Library.prototype.clearBooks = function () {
     document.getElementById('read').checked = false;
 };
 
-Library.prototype.changeStatus = function () {
-    this.read = !this.read;
-    if (this.read === true) {
-        //ADD classList 'read' if true
-        //DISPLAY TEXT on the website
-        this.status.textContent = "Read";
-    } else {
-        //ADD classList 'not-read' if false
-        //DISPLAY TEXT on the website
-        this.status.textContent = "In progress";
-    }
-};
+
 
 //ADD books using event listener
 const bookForm = document.getElementById('book-form');
