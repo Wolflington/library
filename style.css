@@ -7,12 +7,15 @@
     --yellow: #facc15; /* for in progress button */
     --green: #166534; /* for read button */
     --blue: #0077b6; /* for card button */
+    --shadow: inset 0px -1px 3px rgba(0, 0, 0, 0.356);
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Oswald&display=swap');
 
 * {
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
+    font-family: 'Oswald', sans-serif;
 }
 
 body {
@@ -27,6 +30,7 @@ body {
 header {
     background-color: var(--light-white);
     min-height: 1fr;
+    box-shadow: var(--shadow);
 }
 
 .header-container {
@@ -246,6 +250,11 @@ button.delete:hover {
     background: rgba(0, 0, 0, 0.5);
     z-index: 1;
   }
+
+  label[for="read"] {
+    padding-left: 1rem;
+  }
+
 
 /* hides the modal */
 .hidden {
