@@ -144,6 +144,14 @@ button.delete:hover {
     background-color: var(--red);
 }
 
+.read-color:hover{
+    background-color: #166534d3;
+}
+
+.progress-color:hover {
+    background-color: #d31b1bde;
+}
+
 
 
 
