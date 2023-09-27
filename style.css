@@ -214,11 +214,13 @@ button.delete:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--blue);
+    color: var(--light-white);
+    font-weight: 800;
 }
 
 .modal input[type="submit"]:hover {
-    background-color: var(--black);
-    color: var(--light-white);
+    background-color: #0076b6d7
 }
 
 .modal {
