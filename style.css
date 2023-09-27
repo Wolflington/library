@@ -35,7 +35,7 @@ header {
 
 .header-container {
     display: flex;
-    padding: 1.6rem;
+    padding: 1.8rem 4rem;
 }
 
 
@@ -47,7 +47,7 @@ header {
 
 main {
     background-color: var(--gray);
-    padding: 25px;
+    padding: 1.8rem 4rem;
     box-sizing: border-box;
     
 }
