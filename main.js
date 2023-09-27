@@ -32,20 +32,7 @@ Library.prototype.displayBooks = function () {
         let bookStatus = '';
         const statusBtn = document.createElement('button');
 
-        if (book.read === true) {
-            bookStatus = 'Read';
-            statusBtn.classList.add('read-color');
-            statusBtn.classList.remove('progress-color');
-        } else {
-            bookStatus = 'In progress';
-            statusBtn.classList.add('progress-color');
-            statusBtn.classList.remove('read-color');
-        }
-        statusBtn.textContent = bookStatus;
-
-        //Event Listener for status button
-        statusBtn.addEventListener('click', () => {
-            book.changeStatus();
+        function setBookStatus() {
             if (book.read === true) {
                 bookStatus = 'Read';
                 statusBtn.classList.add('read-color');
@@ -56,6 +43,12 @@ Library.prototype.displayBooks = function () {
                 statusBtn.classList.remove('read-color');
             }
             statusBtn.textContent = bookStatus;
+        }
+        setBookStatus();
+        //Event Listener for status button
+        statusBtn.addEventListener('click', () => {
+            book.changeStatus();
+            setBookStatus();
         });
 
         const bookInfo = `<h2>${book.title}</h2>
