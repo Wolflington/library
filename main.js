@@ -11,24 +11,6 @@ Book.prototype.changeStatus = function () {
     this.read = !this.read;
 };
 
-function updateBookStatus(element, book) {
-    const statusElement = element.getElementById('status-span');
-    statusElement.textContent = book.read;
-}
-
-// const toggleButton = document.querySelectorAll('.status-btn');
-// toggleButton.forEach(function(button, index) {
-//     const bookElement = button.parentElement;
-//     const book = new Book(title, author, pages, read);
-
-//     updateBookStatus(element, book);
-
-//     button.addEventListener('click', function () {
-//         book.changeStatus();
-//         updateBookStatus(element, book);
-//     });
-// });
-
 //Library constructor
 function Library () {
     this.books = [];
@@ -42,36 +24,54 @@ Library.prototype.addBook = function (book) {
 Library.prototype.displayBooks = function () {
     const list = document.querySelector(".main-container");
     list.innerHTML = '';
+    let bookStatus = '';
 
     //FOR EACH book in the library
     this.books.forEach((book, index) => {
         //CHECK IF the book is read or not
         let bookStatus = '';
-            if (book.read === true) {
-                bookStatus = 'Read';
-            } else {
-                bookStatus = 'In progress';
-            }
-        const bookInfo = `<h2>${book.title}</h2>
-        <p>by ${book.author}</p>
-        <p>Number of pages: ${book.pages}</p>
-        <p>Status: ${bookStatus}</p>
-        <button class="delete" data-index="${index}">Delete</button>`;
-        const bookItem = document.createElement('div');
         const statusBtn = document.createElement('button');
+
+        if (book.read === true) {
+            bookStatus = 'Read';
+            statusBtn.classList.add('read-color');
+            statusBtn.classList.remove('progress-color');
+        } else {
+            bookStatus = 'In progress';
+            statusBtn.classList.add('progress-color');
+            statusBtn.classList.remove('read-color');
+        }
         statusBtn.textContent = bookStatus;
+
+        //Event Listener for status button
         statusBtn.addEventListener('click', () => {
             book.changeStatus();
-            let bookStatus = '';
             if (book.read === true) {
                 bookStatus = 'Read';
+                statusBtn.classList.add('read-color');
+                statusBtn.classList.remove('progress-color');
             } else {
                 bookStatus = 'In progress';
+                statusBtn.classList.add('progress-color');
+                statusBtn.classList.remove('read-color');
             }
             statusBtn.textContent = bookStatus;
         });
+
+        const bookInfo = `<h2>${book.title}</h2>
+        <p>by ${book.author}</p>
+        <p>Number of pages: ${book.pages}</p>
+        <button class="delete" data-index="${index}">Delete</button>`;
+        const bookItem = document.createElement('div');
+        
+        
+
+        //book-item card
         bookItem.classList.add('book-item');
+        //class for status button
         statusBtn.classList.add('status-btn');
+        
+        //Append all the contents to book-item card
         bookItem.innerHTML = bookInfo;
         list.appendChild(bookItem);
         bookItem.appendChild(statusBtn);
