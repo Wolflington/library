@@ -5,81 +5,79 @@ class Book {
         this.pages = pages;
         this.read = read;
     }
-}
 
-Book.prototype.changeStatus = function () {
-    this.read = !this.read;
-};
+    changeStatus() {
+        this.read = !this.read;
+    };
+}
 
 //Library constructor
-function Library () {
+class Library {
     this.books = [];
-}
 
-//Pushes the information to the library
-Library.prototype.addBook = function (book) {
-    this.books.push(book);
-};
+    //Pushes the information to the library
+    addBook(book) {
+        this.books.push(book);
+    };
 
-Library.prototype.displayBooks = function () {
-    const list = document.querySelector(".main-container");
-    list.innerHTML = '';
-    let bookStatus = '';
-
-    //FOR EACH book in the library
-    this.books.forEach((book, index) => {
-        //CHECK IF the book is read or not
+    displayBooks() {
+        const list = document.querySelector(".main-container");
+        list.innerHTML = '';
         let bookStatus = '';
-        const statusBtn = document.createElement('button');
 
-        function setBookStatus() {
-            if (book.read === true) {
-                bookStatus = 'Read';
-                statusBtn.classList.add('read-color');
-                statusBtn.classList.remove('progress-color');
-            } else {
-                bookStatus = 'In progress';
-                statusBtn.classList.add('progress-color');
-                statusBtn.classList.remove('read-color');
+        //FOR EACH book in the library
+        this.books.forEach((book, index) => {
+            //CHECK IF the book is read or not
+            let bookStatus = '';
+            const statusBtn = document.createElement('button');
+
+            function setBookStatus() {
+                if (book.read === true) {
+                    bookStatus = 'Read';
+                    statusBtn.classList.add('read-color');
+                    statusBtn.classList.remove('progress-color');
+                } else {
+                    bookStatus = 'In progress';
+                    statusBtn.classList.add('progress-color');
+                    statusBtn.classList.remove('read-color');
+                }
+                statusBtn.textContent = bookStatus;
             }
-            statusBtn.textContent = bookStatus;
-        }
-        setBookStatus();
-        //Event Listener for status button
-        statusBtn.addEventListener('click', () => {
-            book.changeStatus();
             setBookStatus();
+            //Event Listener for status button
+            statusBtn.addEventListener('click', () => {
+                book.changeStatus();
+                setBookStatus();
+            });
+
+            const bookInfo = `<h2>${book.title}</h2>
+            <p>by ${book.author}</p>
+            <p>Number of pages: ${book.pages}</p>
+            <button class="delete" data-index="${index}">Delete</button>`;
+            const bookItem = document.createElement('div');
+            
+            
+
+            //book-item card
+            bookItem.classList.add('book-item');
+            //class for status button
+            statusBtn.classList.add('status-btn');
+            
+            //Append all the contents to book-item card
+            bookItem.innerHTML = bookInfo;
+            list.appendChild(bookItem);
+            bookItem.appendChild(statusBtn);
         });
+    };
 
-        const bookInfo = `<h2>${book.title}</h2>
-        <p>by ${book.author}</p>
-        <p>Number of pages: ${book.pages}</p>
-        <button class="delete" data-index="${index}">Delete</button>`;
-        const bookItem = document.createElement('div');
-        
-        
-
-        //book-item card
-        bookItem.classList.add('book-item');
-        //class for status button
-        statusBtn.classList.add('status-btn');
-        
-        //Append all the contents to book-item card
-        bookItem.innerHTML = bookInfo;
-        list.appendChild(bookItem);
-        bookItem.appendChild(statusBtn);
-    });
-};
-
-//Clear the input fields
-Library.prototype.clearBooks = function () {
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-    document.getElementById('pages').value = '';
-    document.getElementById('read').checked = false;
-};
-
-
+    //Clear the input fields
+    clearBooks() {
+        document.getElementById('title').value = '';
+        document.getElementById('author').value = '';
+        document.getElementById('pages').value = '';
+        document.getElementById('read').checked = false;
+    };
+}
 
 //ADD books using event listener
 const bookForm = document.getElementById('book-form');
