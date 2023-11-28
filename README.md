@@ -6,3 +6,9 @@ Are you a book-worm? Do you like to keep track of the books you've read? Library
 Library is powered by HTML, CSS, and Vanilla JavaScript.
 
 Live Demo: https://wolflington.github.io/library/
+
+To add in the future:
+- Improve overall appearance
+- Include (cloud) storage to save the data
+- Refactor code
+- Add animation and effects
